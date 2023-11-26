@@ -19,21 +19,29 @@ import { ApiTags } from '@nestjs/swagger';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
-  }
-
   @Get('/GetListUserByType')
   getListUser(@Query('type') type: string) {
     return this.userService.getListUserByType(type);
   }
-
-  @Get('/SearchUser')
+  @Get('/GetListUserPagination')
+  getListUserPagination(
+    @Query('page') page: number,
+    @Query('perPage') perPage: number,
+  ) {
+    return this.userService.getListUserPagination(+page, +perPage);
+  }
+  @Get('/SearchUserByName')
   getListUserByName(@Query('name') name: string) {
     return this.userService.getListUserByName(name);
   }
-
+  @Get('/SearchUserByNamePagination')
+  getListUserByNamePagination(
+    @Query('name') name: string,
+    @Query('page') page: number,
+    @Query('perPage') perPage: number,
+  ) {
+    return this.userService.getListUserByNamePagination(name, +page, +perPage);
+  }
   @Get('/UserInformation/:userId')
   getUserInfor(@Param('userId') userId: number) {
     return this.userService.getUserInfor(+userId);

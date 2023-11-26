@@ -79,12 +79,12 @@ DROP TABLE IF EXISTS `NguoiDung`;
 CREATE TABLE `NguoiDung` (
   `tai_khoan` int NOT NULL AUTO_INCREMENT,
   `ho_ten` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `so_dt` varchar(255) DEFAULT NULL,
   `mat_khau` varchar(255) DEFAULT NULL,
   `loai_nguoi_dung` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`tai_khoan`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DROP TABLE IF EXISTS `Phim`;
 CREATE TABLE `Phim` (
@@ -265,16 +265,53 @@ INSERT INTO `NguoiDung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `l
 INSERT INTO `NguoiDung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `loai_nguoi_dung`) VALUES
 (2, 'Người Dùng 2', 'user2@example.com', '987654321', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'user');
 INSERT INTO `NguoiDung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `loai_nguoi_dung`) VALUES
-(3, 'Người Dùng 3', 'user3@example.com', '555555555', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'user');
+(4, 'Người Dùng 4', 'user4@example.com', '666666666', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'user');
 INSERT INTO `NguoiDung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `loai_nguoi_dung`) VALUES
-(4, 'Người Dùng 4', 'user4@example.com', '666666666', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'user'),
 (5, 'Người Dùng 5', 'user5@example.com', '777777777', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'user'),
 (6, 'Admin 1', 'admin1@example.com', '111111111', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'admin'),
 (7, 'Admin 2', 'admin2@example.com', '222222222', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'admin'),
 (8, 'Admin 3', 'admin3@example.com', '333333333', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'admin'),
 (9, 'Admin 4', 'admin4@example.com', '444444444', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'admin'),
 (10, 'Admin 5', 'admin5@example.com', '888888888', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'admin'),
-(11, 'nguyen THANH HUY', 'huy@gmail.com', '656756674646', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'admin');
+(11, 'nguyen THANH HUY', 'huy@gmail.com', '656756674646', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'admin'),
+(12, 'Người Dùng 6', 'user6@example.com', '555555555', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(13, 'Người Dùng 7', 'user7@example.com', '666666666', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(14, 'Người Dùng 8', 'user8@example.com', '777777777', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(15, 'Người Dùng 9', 'user9@example.com', '888888888', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(16, 'Người Dùng 10', 'user10@example.com', '999999999', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(17, 'Người Dùng 11', 'user11@example.com', '1010101010', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(18, 'Người Dùng 12', 'user12@example.com', '1111111111', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(19, 'Người Dùng 13', 'user13@example.com', '1212121212', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(20, 'Người Dùng 14', 'user14@example.com', '1313131313', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(21, 'Người Dùng 15', 'user15@example.com', '1414141414', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(22, 'Người Dùng 16', 'user16@example.com', '1515151515', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(23, 'Người Dùng 17', 'user17@example.com', '1616161616', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(24, 'Người Dùng 18', 'user18@example.com', '1717171717', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(25, 'Người Dùng 19', 'user19@example.com', '1818181818', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(26, 'Người Dùng 20', 'user20@example.com', '1919191919', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(27, 'Người Dùng 21', 'user21@example.com', '2020202020', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(28, 'Người Dùng 22', 'user22@example.com', '2121212121', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(29, 'Người Dùng 23', 'user23@example.com', '2222222222', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(30, 'Người Dùng 24', 'user24@example.com', '2323232323', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(31, 'Người Dùng 25', 'user25@example.com', '2424242424', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(32, 'Người Dùng 26', 'user26@example.com', '2525252525', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(33, 'Người Dùng 27', 'user27@example.com', '2626262626', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(34, 'Người Dùng 28', 'user28@example.com', '2727272727', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(35, 'Người Dùng 29', 'user29@example.com', '2828282828', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(36, 'Người Dùng 30', 'user30@example.com', '2929292929', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(37, 'Người Dùng 31', 'user31@example.com', '3030303030', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(38, 'Người Dùng 32', 'user32@example.com', '3131313131', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(39, 'Người Dùng 33', 'user33@example.com', '3232323232', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(40, 'Người Dùng 34', 'user34@example.com', '3333333333', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(41, 'Người Dùng 35', 'user35@example.com', '3434343434', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(42, 'Người Dùng 36', 'user36@example.com', '3535353535', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(43, 'Người Dùng 37', 'user37@example.com', '3636363636', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(44, 'Người Dùng 38', 'user38@example.com', '3737373737', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(45, 'Người Dùng 39', 'user39@example.com', '3838383838', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(46, 'Người Dùng 40', 'user40@example.com', '3939393939', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
+(47, 'Admin 6', 'admin6@example.com', '4444444444', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'admin'),
+(48, 'Admin 7', 'admin7@example.com', '5555555555', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'admin'),
+(49, 'Admin 8', 'admin8@example.com', '6666666666', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'admin');
 
 INSERT INTO `Phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`) VALUES
 (1, 'Phim 1', 'trailer_link_1', 'phim1.jpg', 'Mô tả phim 1', '2023-01-01', 4, 1, 1, 0);

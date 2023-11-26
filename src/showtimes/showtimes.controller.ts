@@ -19,11 +19,11 @@ import { ApiTags } from '@nestjs/swagger';
 export class ShowtimesController {
   constructor(private readonly showtimesService: ShowtimesService) {}
 
-  @Post()
+  @Post('CreateShowtimes')
   createShowtimes(@Body() body: CreateShowtimeDto) {
     return this.showtimesService.createShowtimes(body);
   }
-  @Get()
+  @Get('ListShowtimes')
   getShowtimesById(@Query('MaLichChieu') ma_lich_chieu: number) {
     return this.showtimesService.getShowtimesById(+ma_lich_chieu);
   }

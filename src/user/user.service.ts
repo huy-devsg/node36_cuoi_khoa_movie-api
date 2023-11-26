@@ -1,25 +1,33 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaClient } from '@prisma/client';
 
 @Injectable()
 export class UserService {
   prisma = new PrismaClient();
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  selectInfoUser = {
+    tai_khoan: true,
+    ho_ten: true,
+    email: true,
+    so_dt: true,
+    loai_nguoi_dung: true,
+  };
+  async getListUserPagination(page: number, perPage: number) {
+    try {
+      const skip = (page - 1) * perPage;
+      const data = await this.prisma.nguoiDung.findMany({
+        select: this.selectInfoUser,
+        skip,
+        take: perPage,
+      });
+      return { data };
+    } catch {}
   }
-
   async getListUserByType(type: string) {
     try {
       const data = await this.prisma.nguoiDung.findMany({
-        select: {
-          tai_khoan: true,
-          ho_ten: true,
-          email: true,
-          so_dt: true,
-          loai_nguoi_dung: true,
-        },
+        select: this.selectInfoUser,
+
         where: {
           loai_nguoi_dung: type,
         },
@@ -31,6 +39,7 @@ export class UserService {
   async getListUserByName(name: string) {
     try {
       const data = await this.prisma.nguoiDung.findMany({
+        select: this.selectInfoUser,
         where: {
           ho_ten: {
             contains: name,
@@ -40,16 +49,37 @@ export class UserService {
       return { data };
     } catch {}
   }
+  async getListUserByNamePagination(
+    name: string,
+    page: number,
+    perPage: number,
+  ) {
+    try {
+      const data = await this.prisma.nguoiDung.findMany({
+        select: this.selectInfoUser,
+        where: {
+          ho_ten: {
+            contains: name,
+          },
+        },
+      });
+
+      const start = (page - 1) * perPage;
+      const end = start + perPage;
+      const paginatedData = data.slice(start, end);
+
+      const totalCount = data.length;
+      const totalPages = Math.ceil(totalCount / perPage);
+
+      return { data: paginatedData, totalCount, totalPages };
+    } catch (error) {
+      throw new Error('Error while fetching data');
+    }
+  }
   async getUserInfor(userId: number) {
     try {
       const data = await this.prisma.nguoiDung.findUnique({
-        select: {
-          tai_khoan: true,
-          ho_ten: true,
-          email: true,
-          so_dt: true,
-          loai_nguoi_dung: true,
-        },
+        select: this.selectInfoUser,
         where: {
           tai_khoan: userId,
         },
