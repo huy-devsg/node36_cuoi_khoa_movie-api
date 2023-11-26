@@ -18,4 +18,9 @@ export class BookingTicketController {
   bookingTicked(@Body() creatBookingTicketDto: CreateBookingTicketDto) {
     return this.bookingTicketService.bookingTicked(creatBookingTicketDto);
   }
+
+  @Get(':ticketId')
+  getTicketById(@Param('ticketId') ticketId: number) {
+    return this.bookingTicketService.getTicketById(+ticketId);
+  }
 }

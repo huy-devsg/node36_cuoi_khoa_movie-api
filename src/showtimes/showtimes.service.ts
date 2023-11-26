@@ -6,8 +6,12 @@ import { PrismaClient } from '@prisma/client';
 @Injectable()
 export class ShowtimesService {
   prisma = new PrismaClient();
-  create(createShowtimeDto: CreateShowtimeDto) {
-    return 'This action adds a new showtime';
+
+  async createShowtimes(body: CreateShowtimeDto) {
+    const data = await this.prisma.lichChieu.create({
+      data: body,
+    });
+    return data;
   }
 
   async getShowtimesById(showtimesId: number) {
@@ -22,17 +26,5 @@ export class ShowtimesService {
       },
     });
     return data;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} showtime`;
-  }
-
-  update(id: number, updateShowtimeDto: UpdateShowtimeDto) {
-    return `This action updates a #${id} showtime`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} showtime`;
   }
 }
