@@ -2,25 +2,28 @@ import {
   Controller,
   Get,
   Put,
-  Post,
   Body,
-  Patch,
   Param,
   Delete,
-  Headers,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/authGuard';
 @ApiTags('User')
 @Controller('api/User')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
-
+  @Get('/GetListUser')
+  getListUser() {
+    return this.userService.getListUser();
+  }
   @Get('/GetListUserByType')
-  getListUser(@Query('type') type: string) {
+  getListUserByType(@Query('type') type: string) {
     return this.userService.getListUserByType(type);
   }
   @Get('/GetListUserPagination')

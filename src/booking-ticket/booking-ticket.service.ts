@@ -43,7 +43,7 @@ export class BookingTicketService {
 
       return { data };
     } catch (error) {
-      throw error;
+      throw new Error();
     }
   }
 }

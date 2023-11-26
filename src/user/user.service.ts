@@ -23,6 +23,16 @@ export class UserService {
       return { data };
     } catch {}
   }
+  async getListUser() {
+    try {
+      const data = await this.prisma.nguoiDung.findMany({
+        select: this.selectInfoUser,
+      });
+      return { data };
+    } catch {
+      throw new Error();
+    }
+  }
   async getListUserByType(type: string) {
     try {
       const data = await this.prisma.nguoiDung.findMany({
@@ -33,7 +43,9 @@ export class UserService {
         },
       });
       return { data };
-    } catch {}
+    } catch {
+      throw new Error();
+    }
   }
 
   async getListUserByName(name: string) {
@@ -47,7 +59,9 @@ export class UserService {
         },
       });
       return { data };
-    } catch {}
+    } catch {
+      throw new Error();
+    }
   }
   async getListUserByNamePagination(
     name: string,
@@ -85,7 +99,9 @@ export class UserService {
         },
       });
       return { data };
-    } catch {}
+    } catch {
+      throw new Error();
+    }
   }
   async updateUser(userId: number, body: UpdateUserDto) {
     try {
@@ -107,6 +123,8 @@ export class UserService {
         },
       });
       return { data };
-    } catch {}
+    } catch {
+      throw new Error();
+    }
   }
 }

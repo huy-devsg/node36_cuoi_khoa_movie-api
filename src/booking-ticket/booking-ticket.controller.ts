@@ -1,17 +1,11 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { BookingTicketService } from './booking-ticket.service';
 import { CreateBookingTicketDto } from './dto/create-booking-ticket.dto';
-import { UpdateBookingTicketDto } from './dto/update-booking-ticket.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/authGuard';
 @ApiTags('Booking Ticket')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('api/BookingTicket')
 export class BookingTicketController {
   constructor(private readonly bookingTicketService: BookingTicketService) {}
