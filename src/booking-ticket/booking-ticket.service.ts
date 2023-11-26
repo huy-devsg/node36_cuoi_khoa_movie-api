@@ -46,24 +46,4 @@ export class BookingTicketService {
       throw error;
     }
   }
-
-  async getTicketById(ticketId: number) {
-    try {
-      const data = await this.prisma.datVe.findFirst({
-        where: {
-          ve_id: ticketId,
-        },
-        include: {
-          Ghe: true,
-          LichChieu: {
-            include: {
-              RapPhim: true,
-              Phim: true,
-            },
-          },
-        },
-      });
-      return { data };
-    } catch {}
-  }
 }

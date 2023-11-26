@@ -31,17 +31,16 @@ CREATE TABLE `CumRap` (
 DROP TABLE IF EXISTS `DatVe`;
 CREATE TABLE `DatVe` (
   `ve_id` int NOT NULL AUTO_INCREMENT,
-  `tai_khoan` int DEFAULT NULL,
-  `ma_lich_chieu` int DEFAULT NULL,
+  `tai_khoan` int NOT NULL,
+  `ma_lich_chieu` int NOT NULL,
   `ma_ghe` int DEFAULT NULL,
   PRIMARY KEY (`ve_id`),
-  KEY `tai_khoan` (`tai_khoan`),
   KEY `ma_lich_chieu` (`ma_lich_chieu`),
   KEY `ma_ghe` (`ma_ghe`),
-  CONSTRAINT `DatVe_ibfk_1` FOREIGN KEY (`tai_khoan`) REFERENCES `NguoiDung` (`tai_khoan`),
+  KEY `tai_khoan` (`tai_khoan`),
   CONSTRAINT `DatVe_ibfk_2` FOREIGN KEY (`ma_lich_chieu`) REFERENCES `LichChieu` (`ma_lich_chieu`),
-  CONSTRAINT `DatVe_ibfk_3` FOREIGN KEY (`ma_ghe`) REFERENCES `Ghe` (`ma_ghe`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `DatVe_ibfk_3` FOREIGN KEY (`tai_khoan`) REFERENCES `NguoiDung` (`tai_khoan`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DROP TABLE IF EXISTS `Ghe`;
 CREATE TABLE `Ghe` (
@@ -49,11 +48,10 @@ CREATE TABLE `Ghe` (
   `ten_ghe` varchar(255) DEFAULT NULL,
   `loai_ghe` varchar(255) DEFAULT NULL,
   `ma_rap` int DEFAULT NULL,
-  `gia_ghe` int DEFAULT NULL,
   PRIMARY KEY (`ma_ghe`),
   KEY `ma_rap` (`ma_rap`),
   CONSTRAINT `Ghe_ibfk_1` FOREIGN KEY (`ma_rap`) REFERENCES `RapPhim` (`ma_rap`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DROP TABLE IF EXISTS `HeThongRap`;
 CREATE TABLE `HeThongRap` (
@@ -86,7 +84,7 @@ CREATE TABLE `NguoiDung` (
   `mat_khau` varchar(255) DEFAULT NULL,
   `loai_nguoi_dung` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`tai_khoan`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DROP TABLE IF EXISTS `Phim`;
 CREATE TABLE `Phim` (
@@ -163,52 +161,54 @@ INSERT INTO `DatVe` (`ve_id`, `tai_khoan`, `ma_lich_chieu`, `ma_ghe`) VALUES
 INSERT INTO `DatVe` (`ve_id`, `tai_khoan`, `ma_lich_chieu`, `ma_ghe`) VALUES
 (60, 1, 21, 7);
 INSERT INTO `DatVe` (`ve_id`, `tai_khoan`, `ma_lich_chieu`, `ma_ghe`) VALUES
-(61, 1, 21, 8);
+(61, 1, 21, 8),
+(62, 1, 21, 9),
+(64, 1, 30, 10);
 
-INSERT INTO `Ghe` (`ma_ghe`, `ten_ghe`, `loai_ghe`, `ma_rap`, `gia_ghe`) VALUES
-(1, 'Ghế 1', 'VIP', 1, 129000);
-INSERT INTO `Ghe` (`ma_ghe`, `ten_ghe`, `loai_ghe`, `ma_rap`, `gia_ghe`) VALUES
-(2, 'Ghế 2', 'Thường', 1, 89000);
-INSERT INTO `Ghe` (`ma_ghe`, `ten_ghe`, `loai_ghe`, `ma_rap`, `gia_ghe`) VALUES
-(3, 'Ghế 3', 'VIP', 2, 129000);
-INSERT INTO `Ghe` (`ma_ghe`, `ten_ghe`, `loai_ghe`, `ma_rap`, `gia_ghe`) VALUES
-(4, 'Ghế 4', 'Thường', 2, 89000),
-(5, 'Ghế 5', 'VIP', 3, 129000),
-(6, 'Ghế 6', 'Thường', 3, 89000),
-(7, 'Ghế 7', 'VIP', 4, 129000),
-(8, 'Ghế 8', 'Thường', 4, 89000),
-(9, 'Ghế 9', 'VIP', 5, 129000),
-(10, 'Ghế 10', 'Thường', 5, 89000),
-(11, 'Ghế 11', 'VIP', 6, 129000),
-(12, 'Ghế 12', 'Thường', 6, 89000),
-(13, 'Ghế 13', 'VIP', 7, 129000),
-(14, 'Ghế 14', 'Thường', 7, 89000),
-(15, 'Ghế 15', 'VIP', 8, 129000),
-(16, 'Ghế 16', 'Thường', 8, 89000),
-(17, 'Ghế 17', 'VIP', 9, 129000),
-(18, 'Ghế 18', 'Thường', 9, 89000),
-(19, 'Ghế 19', 'VIP', 10, 129000),
-(20, 'Ghế 20', 'Thường', 10, 89000),
-(21, 'Ghế 21', 'VIP', 11, 129000),
-(22, 'Ghế 22', 'Thường', 11, 89000),
-(23, 'Ghế 23', 'VIP', 12, 129000),
-(24, 'Ghế 24', 'Thường', 12, 89000),
-(25, 'Ghế 25', 'VIP', 13, 129000),
-(26, 'Ghế 26', 'Thường', 13, 89000),
-(27, 'Ghế 27', 'VIP', 14, 129000),
-(28, 'Ghế 28', 'Thường', 14, 89000),
-(29, 'Ghế 29', 'VIP', 15, 129000),
-(30, 'Ghế 30', 'Thường', 15, 89000),
-(31, 'Ghế 31', 'VIP', 16, 129000),
-(32, 'Ghế 32', 'Thường', 16, 89000),
-(33, 'Ghế 33', 'VIP', 17, 129000),
-(34, 'Ghế 34', 'Thường', 17, 89000),
-(35, 'Ghế 35', 'VIP', 18, 129000),
-(36, 'Ghế 36', 'Thường', 18, 89000),
-(37, 'Ghế 37', 'VIP', 19, 129000),
-(38, 'Ghế 38', 'Thường', 19, 89000),
-(39, 'Ghế 39', 'VIP', 20, 129000),
-(40, 'Ghế 40', 'Thường', 20, 89000);
+INSERT INTO `Ghe` (`ma_ghe`, `ten_ghe`, `loai_ghe`, `ma_rap`) VALUES
+(1, 'Ghế 1', 'VIP', 1);
+INSERT INTO `Ghe` (`ma_ghe`, `ten_ghe`, `loai_ghe`, `ma_rap`) VALUES
+(2, 'Ghế 2', 'Thường', 1);
+INSERT INTO `Ghe` (`ma_ghe`, `ten_ghe`, `loai_ghe`, `ma_rap`) VALUES
+(3, 'Ghế 3', 'VIP', 2);
+INSERT INTO `Ghe` (`ma_ghe`, `ten_ghe`, `loai_ghe`, `ma_rap`) VALUES
+(4, 'Ghế 4', 'Thường', 2),
+(5, 'Ghế 5', 'VIP', 3),
+(6, 'Ghế 6', 'Thường', 3),
+(7, 'Ghế 7', 'VIP', 4),
+(8, 'Ghế 8', 'Thường', 4),
+(9, 'Ghế 9', 'VIP', 5),
+(10, 'Ghế 10', 'Thường', 5),
+(11, 'Ghế 11', 'VIP', 6),
+(12, 'Ghế 12', 'Thường', 6),
+(13, 'Ghế 13', 'VIP', 7),
+(14, 'Ghế 14', 'Thường', 7),
+(15, 'Ghế 15', 'VIP', 8),
+(16, 'Ghế 16', 'Thường', 8),
+(17, 'Ghế 17', 'VIP', 9),
+(18, 'Ghế 18', 'Thường', 9),
+(19, 'Ghế 19', 'VIP', 10),
+(20, 'Ghế 20', 'Thường', 10),
+(21, 'Ghế 21', 'VIP', 11),
+(22, 'Ghế 22', 'Thường', 11),
+(23, 'Ghế 23', 'VIP', 12),
+(24, 'Ghế 24', 'Thường', 12),
+(25, 'Ghế 25', 'VIP', 13),
+(26, 'Ghế 26', 'Thường', 13),
+(27, 'Ghế 27', 'VIP', 14),
+(28, 'Ghế 28', 'Thường', 14),
+(29, 'Ghế 29', 'VIP', 15),
+(30, 'Ghế 30', 'Thường', 15),
+(31, 'Ghế 31', 'VIP', 16),
+(32, 'Ghế 32', 'Thường', 16),
+(33, 'Ghế 33', 'VIP', 17),
+(34, 'Ghế 34', 'Thường', 17),
+(35, 'Ghế 35', 'VIP', 18),
+(36, 'Ghế 36', 'Thường', 18),
+(37, 'Ghế 37', 'VIP', 19),
+(38, 'Ghế 38', 'Thường', 19),
+(39, 'Ghế 39', 'VIP', 20),
+(40, 'Ghế 40', 'Thường', 20);
 
 INSERT INTO `HeThongRap` (`ma_he_thong_rap`, `ten_he_thong_rap`, `logo`) VALUES
 (1, 'CGV', 'cgv_logo.jpg');
@@ -261,19 +261,20 @@ INSERT INTO `LichChieu` (`ma_lich_chieu`, `ma_rap`, `ma_phim`, `ngay_gio_chieu`,
 (44, 10, 10, '2023-12-03 19:10:00', 98000);
 
 INSERT INTO `NguoiDung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `loai_nguoi_dung`) VALUES
-(1, 'Người Dùng 1', 'user1@example.com', '123456789', 'password1', 'thanh_vien');
+(1, 'Người Dùng 1', 'user1@example.com', '123456789', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'user');
 INSERT INTO `NguoiDung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `loai_nguoi_dung`) VALUES
-(2, 'Người Dùng 2', 'user2@example.com', '987654321', 'password2', 'thanh_vien');
+(2, 'Người Dùng 2', 'user2@example.com', '987654321', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'user');
 INSERT INTO `NguoiDung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `loai_nguoi_dung`) VALUES
-(3, 'Người Dùng 3', 'user3@example.com', '555555555', 'password3', 'thanh_vien');
+(3, 'Người Dùng 3', 'user3@example.com', '555555555', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'user');
 INSERT INTO `NguoiDung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `loai_nguoi_dung`) VALUES
-(4, 'Người Dùng 4', 'user4@example.com', '666666666', 'password4', 'thanh_vien'),
-(5, 'Người Dùng 5', 'user5@example.com', '777777777', 'password5', 'thanh_vien'),
-(6, 'Admin 1', 'admin1@example.com', '111111111', 'adminpass1', 'quan_tri'),
-(7, 'Admin 2', 'admin2@example.com', '222222222', 'adminpass2', 'quan_tri'),
-(8, 'Admin 3', 'admin3@example.com', '333333333', 'adminpass3', 'quan_tri'),
-(9, 'Admin 4', 'admin4@example.com', '444444444', 'adminpass4', 'quan_tri'),
-(10, 'Admin 5', 'admin5@example.com', '888888888', 'adminpass5', 'quan_tri');
+(4, 'Người Dùng 4', 'user4@example.com', '666666666', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'user'),
+(5, 'Người Dùng 5', 'user5@example.com', '777777777', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'user'),
+(6, 'Admin 1', 'admin1@example.com', '111111111', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'admin'),
+(7, 'Admin 2', 'admin2@example.com', '222222222', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'admin'),
+(8, 'Admin 3', 'admin3@example.com', '333333333', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'admin'),
+(9, 'Admin 4', 'admin4@example.com', '444444444', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'admin'),
+(10, 'Admin 5', 'admin5@example.com', '888888888', '$2b$10$OjFE4gPUt3TqDX8YDn401.Ukw6CXUWxrGbzQrDHTyZdL.0bjqcyCu', 'admin'),
+(11, 'nguyen THANH HUY', 'huy@gmail.com', '656756674646', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'admin');
 
 INSERT INTO `Phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`) VALUES
 (1, 'Phim 1', 'trailer_link_1', 'phim1.jpg', 'Mô tả phim 1', '2023-01-01', 4, 1, 1, 0);

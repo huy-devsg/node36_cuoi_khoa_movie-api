@@ -13,7 +13,7 @@ import { ShowtimesService } from './showtimes.service';
 import { CreateShowtimeDto } from './dto/create-showtime.dto';
 import { UpdateShowtimeDto } from './dto/update-showtime.dto';
 
-@Controller('api/showtimes')
+@Controller('api/Showtimes')
 export class ShowtimesController {
   constructor(private readonly showtimesService: ShowtimesService) {}
 
