@@ -1,6 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Header, Injectable } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaClient } from '@prisma/client';
+import { CreateUserDto } from './dto/create-user.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -12,6 +14,23 @@ export class UserService {
     so_dt: true,
     loai_nguoi_dung: true,
   };
+  async getListUser() {
+    try {
+      const data = await this.prisma.nguoiDung.findMany({});
+      return { data };
+    } catch {}
+  }
+  async getUserInfoByToken(userId: number) {
+    try {
+      const data = await this.prisma.nguoiDung.findUnique({
+        select: this.selectInfoUser,
+        where: {
+          tai_khoan: userId,
+        },
+      });
+      return { data };
+    } catch {}
+  }
   async getListUserPagination(page: number, perPage: number) {
     try {
       const skip = (page - 1) * perPage;
@@ -88,17 +107,18 @@ export class UserService {
     } catch {}
   }
   async updateUser(userId: number, body: UpdateUserDto) {
+    const { mat_khau } = body;
     try {
+      const passBcrypt: string = await bcrypt.hash(mat_khau, 10);
       const data = await this.prisma.nguoiDung.update({
         where: {
           tai_khoan: userId,
         },
-        data: body,
+        data: { ...body, mat_khau: passBcrypt },
       });
       return { data };
     } catch {}
   }
-
   async deleteUser(userId: number) {
     try {
       const data = await this.prisma.nguoiDung.delete({
@@ -108,5 +128,31 @@ export class UserService {
       });
       return { data };
     } catch {}
+  }
+  async creatUser(body: CreateUserDto) {
+    const { email, mat_khau } = body;
+    try {
+      const passBcrypt: string = await bcrypt.hash(mat_khau, 10);
+
+      const checkEmail = await this.prisma.nguoiDung.findFirst({
+        where: {
+          email,
+        },
+      });
+
+      if (!checkEmail) {
+        const data = await this.prisma.nguoiDung.create({
+          data: { ...body, mat_khau: passBcrypt },
+        });
+        return { data };
+      } else {
+        return {
+          status: 400,
+          message: 'Email đã tồn tại. ',
+        };
+      }
+    } catch (err) {
+      throw new Error(`Error creating user: ${err}`);
+    }
   }
 }
