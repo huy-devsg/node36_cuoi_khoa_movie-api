@@ -8,6 +8,9 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './auth/constants/jwtConstants';
 import { UserModule } from './user/user.module';
+import { MovieService } from './movie/movie.service';
+import { MovieController } from './movie/movie.controller';
+import { MovieModule } from './movie/movie.module';
 
 @Module({
   imports: [
@@ -23,8 +26,9 @@ import { UserModule } from './user/user.module';
       signOptions: { expiresIn: process.env.EXPIRES_IN },
     }),
     UserModule,
+    MovieModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, MovieController],
+  providers: [AppService, MovieService],
 })
 export class AppModule {}
