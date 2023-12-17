@@ -11,6 +11,7 @@ import { UserModule } from './user/user.module';
 import { MovieService } from './movie/movie.service';
 import { MovieController } from './movie/movie.controller';
 import { MovieModule } from './movie/movie.module';
+import { CinemaModule } from './cinema/cinema.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { MovieModule } from './movie/movie.module';
     }),
     UserModule,
     MovieModule,
+    CinemaModule,
   ],
   controllers: [AppController, MovieController],
   providers: [AppService, MovieService],
