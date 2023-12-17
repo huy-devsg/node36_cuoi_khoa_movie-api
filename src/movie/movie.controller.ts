@@ -4,10 +4,8 @@ import {
   Put,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
-  Headers,
   Query,
   UseGuards,
   Req,
@@ -18,13 +16,10 @@ import {
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
-  ApiBody,
   ApiConsumes,
-  ApiProperty,
   ApiTags,
 } from '@nestjs/swagger';
 import { MovieService } from './movie.service';
-import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -39,7 +34,6 @@ import { UpdateFilmDto } from './dto/update-film.dto';
 export class MovieController {
   constructor(
     private readonly movieService: MovieService,
-    private configService: ConfigService,
   ) {}
   @Get('/GetListBanner')
   async getListBanner(@Res() res: Response) {
@@ -99,12 +93,12 @@ export class MovieController {
       ).data,
     });
   }
-  @Get('/FilmInformation/:id')
-  async getFilmInfor(@Param('id') id: number, @Res() res: Response) {
+  @Get('/FilmInformation')
+  async getFilmInfor(@Query('ma_phim') ma_phim: string, @Res() res: Response) {
     // return this.movieService.getFilmInfor(+id);
     res.send({
       message: 'Xử lí thành công!',
-      data: (await this.movieService.getFilmInfor(+id)).data,
+      data: (await this.movieService.getFilmInfor(+ma_phim)).data,
     });
   }
   @Get('/GetListFilmsByDay')

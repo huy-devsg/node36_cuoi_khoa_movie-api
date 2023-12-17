@@ -46,7 +46,6 @@ export class UserService {
     try {
       const data = await this.prisma.nguoiDung.findMany({
         select: this.selectInfoUser,
-
         where: {
           loai_nguoi_dung: type,
         },
