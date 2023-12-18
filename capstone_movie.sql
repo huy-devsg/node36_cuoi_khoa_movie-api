@@ -7,7 +7,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP TABLE IF EXISTS `Banner`;
 CREATE TABLE `Banner` (
   `ma_banner` int NOT NULL AUTO_INCREMENT,
   `ma_phim` int DEFAULT NULL,
@@ -17,7 +16,6 @@ CREATE TABLE `Banner` (
   CONSTRAINT `Banner_ibfk_1` FOREIGN KEY (`ma_phim`) REFERENCES `Phim` (`ma_phim`)
 ) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `CumRap`;
 CREATE TABLE `CumRap` (
   `ma_cum_rap` int NOT NULL AUTO_INCREMENT,
   `ten_cum_rap` varchar(255) DEFAULT NULL,
@@ -28,7 +26,6 @@ CREATE TABLE `CumRap` (
   CONSTRAINT `CumRap_ibfk_1` FOREIGN KEY (`ma_he_thong_rap`) REFERENCES `HeThongRap` (`ma_he_thong_rap`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `DatVe`;
 CREATE TABLE `DatVe` (
   `ve_id` int NOT NULL AUTO_INCREMENT,
   `tai_khoan` int NOT NULL,
@@ -42,7 +39,6 @@ CREATE TABLE `DatVe` (
   CONSTRAINT `DatVe_ibfk_3` FOREIGN KEY (`tai_khoan`) REFERENCES `NguoiDung` (`tai_khoan`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `Ghe`;
 CREATE TABLE `Ghe` (
   `ma_ghe` int NOT NULL AUTO_INCREMENT,
   `ten_ghe` varchar(255) DEFAULT NULL,
@@ -53,7 +49,6 @@ CREATE TABLE `Ghe` (
   CONSTRAINT `Ghe_ibfk_1` FOREIGN KEY (`ma_rap`) REFERENCES `RapPhim` (`ma_rap`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `HeThongRap`;
 CREATE TABLE `HeThongRap` (
   `ma_he_thong_rap` int NOT NULL AUTO_INCREMENT,
   `ten_he_thong_rap` varchar(255) DEFAULT NULL,
@@ -61,7 +56,6 @@ CREATE TABLE `HeThongRap` (
   PRIMARY KEY (`ma_he_thong_rap`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `LichChieu`;
 CREATE TABLE `LichChieu` (
   `ma_lich_chieu` int NOT NULL AUTO_INCREMENT,
   `ma_rap` int DEFAULT NULL,
@@ -75,7 +69,6 @@ CREATE TABLE `LichChieu` (
   CONSTRAINT `LichChieu_ibfk_2` FOREIGN KEY (`ma_phim`) REFERENCES `Phim` (`ma_phim`)
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `NguoiDung`;
 CREATE TABLE `NguoiDung` (
   `tai_khoan` int NOT NULL AUTO_INCREMENT,
   `ho_ten` varchar(255) DEFAULT NULL,
@@ -84,24 +77,22 @@ CREATE TABLE `NguoiDung` (
   `mat_khau` varchar(255) DEFAULT NULL,
   `loai_nguoi_dung` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`tai_khoan`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `Phim`;
 CREATE TABLE `Phim` (
   `ma_phim` int NOT NULL AUTO_INCREMENT,
   `ten_phim` varchar(255) DEFAULT NULL,
   `trailer` varchar(255) DEFAULT NULL,
   `hinh_anh` varchar(255) DEFAULT NULL,
   `mo_ta` varchar(255) DEFAULT NULL,
-  `ngay_khoi_chieu` date DEFAULT NULL,
+  `ngay_khoi_chieu` datetime DEFAULT NULL,
   `danh_gia` int DEFAULT NULL,
   `hot` tinyint(1) DEFAULT NULL,
   `dang_chieu` tinyint(1) DEFAULT NULL,
   `sap_chieu` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`ma_phim`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `RapPhim`;
 CREATE TABLE `RapPhim` (
   `ma_rap` int NOT NULL AUTO_INCREMENT,
   `ten_rap` varchar(255) DEFAULT NULL,
@@ -311,26 +302,28 @@ INSERT INTO `NguoiDung` (`tai_khoan`, `ho_ten`, `email`, `so_dt`, `mat_khau`, `l
 (46, 'Người Dùng 40', 'user40@example.com', '3939393939', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'user'),
 (47, 'Admin 6', 'admin6@example.com', '4444444444', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'admin'),
 (48, 'Admin 7', 'admin7@example.com', '5555555555', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'admin'),
-(49, 'Admin 8', 'admin8@example.com', '6666666666', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'admin');
+(49, 'Admin 8', 'admin8@example.com', '6666666666', '$2b$10$E6uHRFMdyYrAxEc2tenEge/dCbkN7D2toMJ2O4qWu3en4tTZ4kjea', 'admin'),
+(50, 'quy', 'aaa@gmail.com', '12345678', '$2b$10$aVlcB25MItnm0MbdI6uyZ.IlCb8e9pbz1qTFP51ltDydVac49dARi', 'admin');
 
 INSERT INTO `Phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`) VALUES
-(1, 'Phim 1', 'trailer_link_1', 'phim1.jpg', 'Mô tả phim 1', '2023-01-01', 4, 1, 1, 0);
+(1, 'Phim 1', 'trailer_link_1', 'C:\\Users\\HP\\Desktop\\node36_cuoi_khoa_movie-api/public/img/Screenshot (309).png', 'Mô tả phim 1', '2023-01-01 00:00:00', 4, 1, 1, 0);
 INSERT INTO `Phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`) VALUES
-(2, 'Phim 2', 'trailer_link_2', 'phim2.jpg', 'Mô tả phim 2', '2023-02-01', 5, 1, 1, 0);
+(2, 'Phim 2', 'trailer_link_2', 'C:\\Users\\HP\\Desktop\\node36_cuoi_khoa_movie-api/public/img/Screenshot (308).png', 'Mô tả phim 2', '2023-02-01 00:00:00', 5, 1, 1, 0);
 INSERT INTO `Phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`) VALUES
-(3, 'Phim 3', 'trailer_link_3', 'phim3.jpg', 'Mô tả phim 3', '2023-03-01', 3, 1, 0, 1);
+(3, 'Phim 3', 'trailer_link_3', 'phim3.jpg', 'Mô tả phim 3', '2023-03-01 00:00:00', 3, 1, 0, 1);
 INSERT INTO `Phim` (`ma_phim`, `ten_phim`, `trailer`, `hinh_anh`, `mo_ta`, `ngay_khoi_chieu`, `danh_gia`, `hot`, `dang_chieu`, `sap_chieu`) VALUES
-(4, 'Phim 4', 'trailer_link_4', 'phim4.jpg', 'Mô tả phim 4', '2023-04-01', 4, 1, 0, 1),
-(5, 'Phim 5', 'trailer_link_5', 'phim5.jpg', 'Mô tả phim 5', '2023-05-01', 5, 1, 0, 1),
-(6, 'Phim 6', 'trailer_link_6', 'phim6.jpg', 'Mô tả phim 6', '2023-06-01', 3, 1, 0, 1),
-(7, 'Phim 7', 'trailer_link_7', 'phim7.jpg', 'Mô tả phim 7', '2023-07-01', 4, 1, 0, 1),
-(8, 'Phim 8', 'trailer_link_8', 'phim8.jpg', 'Mô tả phim 8', '2023-08-01', 5, 1, 0, 1),
-(9, 'Phim 9', 'trailer_link_9', 'phim9.jpg', 'Mô tả phim 9', '2023-09-01', 4, 1, 0, 1),
-(10, 'Phim 10', 'trailer_link_10', 'phim10.jpg', 'Mô tả phim 10', '2023-10-01', 3, 1, 0, 1),
-(11, 'Phim 11', 'trailer_link_11', 'phim11.jpg', 'Mô tả phim 11', '2023-11-01', 5, 0, 0, 1),
-(12, 'Phim 12', 'trailer_link_12', 'phim12.jpg', 'Mô tả phim 12', '2023-12-01', 4, 0, 0, 1),
-(13, 'Phim 13', 'trailer_link_13', 'phim13.jpg', 'Mô tả phim 13', '2024-01-01', 3, 0, 0, 1),
-(14, 'Phim 14', 'trailer_link_14', 'phim14.jpg', 'Mô tả phim 14', '2024-02-01', 4, 0, 0, 1);
+(4, 'Phim 4', 'trailer_link_4', 'phim4.jpg', 'Mô tả phim 4', '2023-04-01 00:00:00', 4, 1, 0, 1),
+(5, 'Phim 5', 'trailer_link_5', 'phim5.jpg', 'Mô tả phim 5', '2023-05-01 00:00:00', 5, 1, 0, 1),
+(6, 'Phim 6', 'trailer_link_6', 'phim6.jpg', 'Mô tả phim 6', '2023-06-01 00:00:00', 3, 1, 0, 1),
+(7, 'Phim 7', 'trailer_link_7', 'phim7.jpg', 'Mô tả phim 7', '2023-07-01 00:00:00', 4, 1, 0, 1),
+(8, 'Phim 8', 'trailer_link_8', 'phim8.jpg', 'Mô tả phim 8', '2023-08-01 00:00:00', 5, 1, 0, 1),
+(9, 'Phim 9', 'trailer_link_9', 'phim9.jpg', 'Mô tả phim 9', '2023-09-01 00:00:00', 4, 1, 0, 1),
+(10, 'Phim 10', 'trailer_link_10', 'phim10.jpg', 'Mô tả phim 10', '2023-10-01 00:00:00', 3, 1, 0, 1),
+(11, 'Phim 11', 'trailer_link_11', 'phim11.jpg', 'Mô tả phim 11', '2023-11-01 00:00:00', 5, 0, 0, 1),
+(12, 'Phim 12', 'trailer_link_12', 'phim12.jpg', 'Mô tả phim 12', '2023-12-01 00:00:00', 4, 0, 0, 1),
+(13, 'Phim 13', 'trailer_link_13', 'phim13.jpg', 'Mô tả phim 13', '2024-01-01 00:00:00', 3, 0, 0, 1),
+(14, 'Phim 14', 'trailer_link_14', 'phim14.jpg', 'Mô tả phim 14', '2024-02-01 00:00:00', 4, 0, 0, 1),
+(15, 'Phim 15', 'Trailer 15', 'Img15.jpg', 'Mota 15', '2023-12-16 16:30:52', 9, 1, 1, 0);
 
 INSERT INTO `RapPhim` (`ma_rap`, `ten_rap`, `ma_cum_rap`) VALUES
 (1, 'Rạp 1', 1);
