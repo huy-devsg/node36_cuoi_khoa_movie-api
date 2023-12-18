@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { BookingTicketService } from './booking-ticket.service';
 import { CreateBookingTicketDto } from './dto/create-booking-ticket.dto';
-import { UpdateBookingTicketDto } from './dto/update-booking-ticket.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/authGuard';
 @ApiTags('Booking Ticket')

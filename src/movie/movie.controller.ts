@@ -82,7 +82,6 @@ export class MovieController {
   }
   @Get('/FilmInformation')
   async getFilmInfor(@Query('ma_phim') ma_phim: string, @Res() res: Response) {
-    // return this.movieService.getFilmInfor(+id);
     res.send({
       message: 'Xử lí thành công!',
       data: (await this.movieService.getFilmInfor(+ma_phim)).data,
