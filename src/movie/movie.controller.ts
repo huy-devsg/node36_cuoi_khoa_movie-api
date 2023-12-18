@@ -14,11 +14,7 @@ import {
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
-import {
-  ApiBearerAuth,
-  ApiConsumes,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { MovieService } from './movie.service';
 import { Response } from 'express';
 import { FilesInterceptor } from '@nestjs/platform-express';
@@ -32,9 +28,7 @@ import { UpdateFilmDto } from './dto/update-film.dto';
 @ApiTags('Movie')
 @Controller('api/Movie')
 export class MovieController {
-  constructor(
-    private readonly movieService: MovieService,
-  ) {}
+  constructor(private readonly movieService: MovieService) {}
   @Get('/GetListBanner')
   async getListBanner(@Res() res: Response) {
     res.send({
@@ -55,7 +49,6 @@ export class MovieController {
     @Query('perPage') perPage: number,
     @Res() res: Response,
   ) {
-    // return this.movieService.getListFilmsPagination(+page, +perPage);
     res.send({
       message: 'Xử lí thành công!',
       data: (await this.movieService.getListFilmsPagination(+page, +perPage))
@@ -64,7 +57,6 @@ export class MovieController {
   }
   @Get('/SearchFilmsByName')
   async getListFilmsByName(@Query('name') name: string, @Res() res: Response) {
-    // return this.movieService.getListFilmsByName(name);
     res.send({
       message: 'Xử lí thành công!',
       data: (await this.movieService.getListFilmsByName(name)).data,
@@ -77,11 +69,6 @@ export class MovieController {
     @Query('perPage') perPage: number,
     @Res() res: Response,
   ) {
-    // return this.movieService.getListFilmsByNamePagination(
-    //   name,
-    //   +page,
-    //   +perPage,
-    // );
     res.send({
       message: 'Xử lí thành công!',
       data: (
@@ -124,16 +111,20 @@ export class MovieController {
       }),
     }),
   )
-  uploadImg(
+  async uploadImg(
     @UploadedFiles() files: Array<Express.Multer.File>,
     @Param('id') id: number,
+    @Res() res: Response,
   ) {
     for (const file of files) {
       console.log(file);
-      this.movieService.uploadMovieImg(
-        +id,
-        file.destination + '/' + file.originalname,
-      );
+      res.send({
+        message: 'Xử lí thành công!',
+        data: await this.movieService.uploadMovieImg(
+          +id,
+          file.destination + '/' + file.originalname,
+        ),
+      });
     }
   }
   @ApiBearerAuth()
