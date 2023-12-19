@@ -78,7 +78,10 @@ export class UserController {
     console.log(id);
     return this.userService.getUserInfoByToken(id);
   }
+
   @Get('/UserInformation/:userId')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
   getUserInfor(@Param('userId') userId: number) {
     return this.userService.getUserInfor(+userId);
   }

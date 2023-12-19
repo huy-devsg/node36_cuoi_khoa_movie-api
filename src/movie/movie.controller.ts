@@ -96,6 +96,8 @@ export class MovieController {
   }
 
   @Post('/upload-movieImg/:id')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
   @ApiConsumes('multipart/form-data')
   @ApiFile()
   @UseInterceptors(

@@ -38,8 +38,11 @@ export class AuthService {
           secret: this.configService.get('SECRET_KEY'),
         },
       );
-
-      return token;
+      return {
+        status: 200,
+        message: 'Đăng nhập thành công',
+        accessToken: token,
+      };
     } catch (err) {
       throw new UnauthorizedException();
     }
@@ -49,7 +52,6 @@ export class AuthService {
     const { email, mat_khau } = body;
     try {
       const passBcrypt: string = await bcrypt.hash(mat_khau, 10);
-
       const checkEmail = await this.prisma.nguoiDung.findFirst({
         where: {
           email,
@@ -61,12 +63,11 @@ export class AuthService {
           data: { ...body, mat_khau: passBcrypt },
         });
         return { data };
-      } else {
-        return {
-          status: 400,
-          message: 'Email đã tồn tại. ',
-        };
       }
+      return {
+        status: 400,
+        message: 'Email đã tồn tại. ',
+      };
     } catch (err) {
       throw new Error(`Error creating user: ${err}`);
     }

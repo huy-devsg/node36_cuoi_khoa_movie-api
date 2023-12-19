@@ -22,10 +22,10 @@ export class JwtAuthGuard implements CanActivate {
         const decoded = this.jwtService.verify(token);
         const user = await this.prisma.nguoiDung.findUnique({
           where: {
-            tai_khoan: decoded.data.id
-          }
-        })
-        request.user = {...decoded, role: user.loai_nguoi_dung};
+            tai_khoan: decoded.data.id,
+          },
+        });
+        request.user = { ...decoded, role: user.loai_nguoi_dung };
         return true;
       } catch (error) {
         throw new UnauthorizedException('Invalid token');

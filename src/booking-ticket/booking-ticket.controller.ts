@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { BookingTicketService } from './booking-ticket.service';
 import { CreateBookingTicketDto } from './dto/create-booking-ticket.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
