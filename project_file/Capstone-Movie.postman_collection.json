@@ -1,0 +1,991 @@
+{
+	"info": {
+		"_postman_id": "73d258c5-62d1-4adc-b272-e319b842eb25",
+		"name": "Capstone-Movie",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30813896"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"xzc@gmail.com\",\r\n  \"mat_khau\": \"aaaa1111\",\r\n  \"ho_ten\": \"huy\",\r\n  \"so_dt\": \"098765432\",\r\n  \"loai_nguoi_dung\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/Auth/Register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Auth",
+								"Register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"aaa@gmail.com\",\r\n  \"mat_khau\": \"aaaa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/Auth/Login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Auth",
+								"Login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Lấy danh sách user theo loại người dùng",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/User/GetListUserByType?type=user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"User",
+								"GetListUserByType"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy danh sách user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/User/getListUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"User",
+								"getListUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy danh sách user phân trang",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/User/GetListUserPagination?page=1&perPage=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"User",
+								"GetListUserPagination"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "perPage",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tìm kiếm người dùng",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/User/SearchUserByName?name=quy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"User",
+								"SearchUserByName"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "quy"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tìm kiếm người dùng phân trang",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/User/SearchUserByNamePagination?name=Người Dùng 4&page=1&perPage=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"User",
+								"SearchUserByNamePagination"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Người Dùng 4"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "perPage",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thông tin tài khoản",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo1MSwiZW1haWwiOiJ4emNAZ21haWwuY29tIn0sImlhdCI6MTcwMjkwNDkwMSwiZXhwIjoxNzAyOTA4NTAxfQ._v5H6vEwWodmvGJ5kvW0ZuepF0usUG8qNG-FwfhZnU8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/User/getUserInfoByToken",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"User",
+								"getUserInfoByToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy thông tin người dùng qua id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/User/UserInformation/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"User",
+								"UserInformation",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thêm người dùng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo1MSwiZW1haWwiOiJ4emNAZ21haWwuY29tIn0sImlhdCI6MTcwMjkwNDkwMSwiZXhwIjoxNzAyOTA4NTAxfQ._v5H6vEwWodmvGJ5kvW0ZuepF0usUG8qNG-FwfhZnU8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"abc@gmail.com\",\r\n  \"mat_khau\": \"abc\",\r\n  \"ho_ten\": \"duy\",\r\n  \"so_dt\": \"999999999\",\r\n  \"loai_nguoi_dung\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/User/creatUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"User",
+								"creatUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cập nhật người dùng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo1MSwiZW1haWwiOiJ4emNAZ21haWwuY29tIn0sImlhdCI6MTcwMjkwNDkwMSwiZXhwIjoxNzAyOTA4NTAxfQ._v5H6vEwWodmvGJ5kvW0ZuepF0usUG8qNG-FwfhZnU8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"abc@gmail.com\",\r\n  \"mat_khau\": \"abc123\",\r\n  \"ho_ten\": \"dung\",\r\n  \"so_dt\": \"8888888\",\r\n  \"loai_nguoi_dung\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/User/UpdateUser/52",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"User",
+								"UpdateUser",
+								"52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa người dùng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo1MSwiZW1haWwiOiJ4emNAZ21haWwuY29tIn0sImlhdCI6MTcwMjkwNDkwMSwiZXhwIjoxNzAyOTA4NTAxfQ._v5H6vEwWodmvGJ5kvW0ZuepF0usUG8qNG-FwfhZnU8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/User/DeleteUser/52",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"User",
+								"DeleteUser",
+								"52"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movie",
+			"item": [
+				{
+					"name": "Lấy danh sách banner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Movie/GetListBanner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Movie",
+								"GetListBanner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy danh sách phim",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Movie/GetListFilms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Movie",
+								"GetListFilms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy danh sách phim phân trang",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Movie/GetListFilmsPagination?page=1&perPage=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Movie",
+								"GetListFilmsPagination"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "perPage",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tìm kiếm phim",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Movie/SearchFilmsByName?name=Phim%2015",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Movie",
+								"SearchFilmsByName"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Phim%2015"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tìm kiếm phim phân trang",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Movie/SearchFilmsByNamePagination?name=Phim%2012&page=1&perPage=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Movie",
+								"SearchFilmsByNamePagination"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Phim%2012"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "perPage",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Láy thông tin phim",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Movie/FilmInformation?ma_phim=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Movie",
+								"FilmInformation"
+							],
+							"query": [
+								{
+									"key": "ma_phim",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy danh sách phim theo ngày khởi chiếu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Movie/GetListFilmsByDay?fromDate=2003-01-01&toDate=2023-05-01",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Movie",
+								"GetListFilmsByDay"
+							],
+							"query": [
+								{
+									"key": "fromDate",
+									"value": "2003-01-01"
+								},
+								{
+									"key": "toDate",
+									"value": "2023-05-01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload ảnh phim",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo1MSwiZW1haWwiOiJ4emNAZ21haWwuY29tIn0sImlhdCI6MTcwMjkwNDkwMSwiZXhwIjoxNzAyOTA4NTAxfQ._v5H6vEwWodmvGJ5kvW0ZuepF0usUG8qNG-FwfhZnU8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/HP/Pictures/Screenshots/phong-tro-la-loai-hinh-nha-o-pho-bien-gia-re-tien-loi-cho-sinh-vien-va-nguoi-di-lam.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/Movie/upload-movieImg/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Movie",
+								"upload-movieImg",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thêm phim mới",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo1MSwiZW1haWwiOiJ4emNAZ21haWwuY29tIn0sImlhdCI6MTcwMjkwNDkwMSwiZXhwIjoxNzAyOTA4NTAxfQ._v5H6vEwWodmvGJ5kvW0ZuepF0usUG8qNG-FwfhZnU8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ten_phim\": \"Phim 16\",\r\n  \"trailer\": \"Trailer 16\",\r\n  \"hinh_anh\": \"img16\",\r\n  \"mo_ta\": \"Mota 16\",\r\n  \"ngay_khoi_chieu\": \"2023-12-18T13:38:11.276Z\",\r\n  \"danh_gia\": 9,\r\n  \"hot\": true,\r\n  \"dang_chieu\": false,\r\n  \"sap_chieu\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/Movie/CreatFilm",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Movie",
+								"CreatFilm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cập nhật phim",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo1MSwiZW1haWwiOiJ4emNAZ21haWwuY29tIn0sImlhdCI6MTcwMjkwNDkwMSwiZXhwIjoxNzAyOTA4NTAxfQ._v5H6vEwWodmvGJ5kvW0ZuepF0usUG8qNG-FwfhZnU8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ten_phim\": \"Phim hay\",\r\n  \"trailer\": \"Trailer\",\r\n  \"hinh_anh\": \"img16\",\r\n  \"mo_ta\": \"good\",\r\n  \"ngay_khoi_chieu\": \"2023-01-08T13:38:11.276Z\",\r\n  \"danh_gia\": 8,\r\n  \"hot\": true,\r\n  \"dang_chieu\": false,\r\n  \"sap_chieu\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/Movie/UpdateFilm/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Movie",
+								"UpdateFilm",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa phim",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo1MSwiZW1haWwiOiJ4emNAZ21haWwuY29tIn0sImlhdCI6MTcwMjkwNDkwMSwiZXhwIjoxNzAyOTA4NTAxfQ._v5H6vEwWodmvGJ5kvW0ZuepF0usUG8qNG-FwfhZnU8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Movie/DeleteFilm/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Movie",
+								"DeleteFilm",
+								"15"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cinema",
+			"item": [
+				{
+					"name": "Lấy danh sách hệ thống rạp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Cinema/CinemaInformation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Cinema",
+								"CinemaInformation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy thông tin hệ thống rạp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Cinema/CinemaInformation?mahethongrap=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Cinema",
+								"CinemaInformation"
+							],
+							"query": [
+								{
+									"key": "mahethongrap",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy thông tin cụm rạp theo hệ thống",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Cinema/CinemaComplexInformation?mahethongrap=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Cinema",
+								"CinemaComplexInformation"
+							],
+							"query": [
+								{
+									"key": "mahethongrap",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Láy thông tin lịch chiếu phim theo hệ thống rạp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Cinema/getShowtimeCinemaComplexInfor?mahethongrap=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Cinema",
+								"getShowtimeCinemaComplexInfor"
+							],
+							"query": [
+								{
+									"key": "mahethongrap",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy thông tin lịch chiếu phim",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Cinema/getShowtimeInfor?maPhim=6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Cinema",
+								"getShowtimeInfor"
+							],
+							"query": [
+								{
+									"key": "maPhim",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Showtimes",
+			"item": [
+				{
+					"name": "Lấy danh sách lịch chiếu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/Showtimes/ListShowtimes?MaLichChieu=21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Showtimes",
+								"ListShowtimes"
+							],
+							"query": [
+								{
+									"key": "MaLichChieu",
+									"value": "21"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thêm lịch chiếu",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo1MCwiZW1haWwiOiJhYWFAZ21haWwuY29tIn0sImlhdCI6MTcwMjkwODkwMiwiZXhwIjoxNzAyOTEyNTAyfQ.UOEma5NQzyQ3YMb5BsCa98_R66edYOItdj0GXuovM9s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ma_rap\": 1,\r\n  \"ma_phim\": 2,\r\n  \"ngay_gio_chieu\": \"2023-12-18T14:08:45.797Z\",\r\n  \"gia_ve\": 200000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/Showtimes/CreateShowtimes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"Showtimes",
+								"CreateShowtimes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Đặt vé",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo1MCwiZW1haWwiOiJhYWFAZ21haWwuY29tIn0sImlhdCI6MTcwMjkwODkwMiwiZXhwIjoxNzAyOTEyNTAyfQ.UOEma5NQzyQ3YMb5BsCa98_R66edYOItdj0GXuovM9s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tai_khoan\": 4,\r\n  \"ma_lich_chieu\": 21,\r\n  \"ma_ghe\": 29\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/BookingTicket",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"BookingTicket"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
